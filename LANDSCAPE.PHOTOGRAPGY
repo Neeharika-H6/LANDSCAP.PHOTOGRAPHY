@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Language Learner</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #21d8db;
+    }
+
+    header {
+      background: #01384e;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      background: rgba(18, 88, 186, 0.699);
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .card {
+      display: inline-block;
+      background: rgba(3, 56, 131, 0.862);
+      border: 1px solid #06c06f;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      width: 100px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .card.flipped {
+      background: #042884;
+      color: rgba(255, 255, 255, 0.274);
+      transform: rotateY(180deg);
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4592a0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #01043dd1;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Learn Spanish</h1>
+  </header>
+
+  <main>
+    <section id="vocab">
+      <h2>Vocabulary</h2>
+      <ul id="vocab-list">
+        <li>House - Casa</li>
+        <li>Dog - Perro</li>
+        <li>Water - Agua</li>
+        <li>Cat - Gato</li>
+        <li>Sun - Sol</li>
+      </ul>
+    </section>
+
+    <section id="flashcards">
+      <h2>Flashcards</h2>
+      <div class="card" onclick="flipCard(this)">House</div>
+      <div class="card" onclick="flipCard(this)">Dog</div>
+      <div class="card" onclick="flipCard(this)">Water</div>
+    </section>
+
+    <section id="quiz">
+      <h2>Quiz</h2>
+      <p>What is "Cat" in Spanish?</p>
+      <button onclick="checkAnswer('Gato')">Gato</button>
+      <button onclick="checkAnswer('Perro')">Perro</button>
+      <button onclick="checkAnswer('Sol')">Sol</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Language Learner</p>
+  </footer>
+
+  <script>
+    function flipCard(card) {
+      const word = card.textContent.trim();
+      const translations = {
+        House: "Casa",
+        Dog: "Perro",
+        Water: "Agua"
+      };
+
+      if (!card.classList.contains('flipped')) {
+        card.textContent = translations[word] || word;
+      } else {
+        const englishWords = Object.keys(translations);
+        for (let i = 0; i < englishWords.length; i++) {
+          if (translations[englishWords[i]] === word) {
+            card.textContent = englishWords[i];
+            break;
+          }
+        }
+      }
+
+      card.classList.toggle("flipped");
+    }
+
+    function checkAnswer(answer) {
+      if (answer === "Gato") {
+        alert("Correct!");
+      } else {
+        alert("Try again!");
+      }
+    }
+  </script>
+</body>
+</html>
